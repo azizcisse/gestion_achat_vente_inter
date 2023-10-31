@@ -1,0 +1,1 @@
+web: gunicorn gestion_achat_vente_inter.wsgi
