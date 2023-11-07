@@ -9,7 +9,7 @@
         <title>AFRICOM {% block title %}{% endblock title %}</title>
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/maain.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     </head>
     <body>
@@ -27,7 +27,10 @@
                 placeholder="Rechercher" aria-label="Rechercher">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link text-danger" href="#">Déconnexion</a>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <input class="text-white btn btn-danger" type="submit" value="Déconnexion">
+                    </form>
                 </li>
             </ul>
         </nav>

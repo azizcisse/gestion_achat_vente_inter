@@ -4,13 +4,13 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/">
                     <span data-feather="home"></span>
-                    AFRICOM <span class="sr-only">(current)</span>
+                    AFRICOM 
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'achats' %}">
                     Gestion des Achats
                 </a>
             </li>
@@ -30,13 +30,33 @@
         </h6>
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="">
                     Total des Achats
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     Total des Ventes
+                </a>
+            </li>
+        </ul>
+
+        <h6
+            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Paramètres</span>
+            <a class="d-flex align-items-center text-muted"
+                href="#" aria-label="Add a new report">
+            </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'preferences' %}">
+                    Généralité
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Comptes
                 </a>
             </li>
         </ul>

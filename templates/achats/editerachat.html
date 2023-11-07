@@ -1,0 +1,60 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container mt-4 w-50">
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'achats'%}">Achats</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Editer Achat
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'supprimer-achat' achat.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'edit-achat' achat.id %}" method="post">
+                {% include 'partials/_messages.html'%} {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Montant</label>
+                    <input type="text" class="form-control form-control-sm" name="montant" value="{{values.montant}}" />
+                </div>
+                <div class="form-group">
+                    <label for="">Déscription</label>
+                    <input type="text" class="form-control form-control-sm" name="description"
+                        value="{{values.description}}" />
+                </div>
+                <div class="form-group">
+                    <label for="">Catégorie</label>
+                    <select class="form-control" name="categorie">
+                        <option selected name="categorie" value="{{values.categorie}}">{{values.categorie}}</option>
+                        {% for categorie in categories%}
+                        <option name="categorie" value="{{categorie.name}}">{{categorie.nomCategorie}}</option>
+
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Date d'Achat</label>
+                    <input type="date" value="{{values.date |date:'d-m-Y' }}" class="form-control form-control-sm"
+                        name="date_achat" />
+                </div>
+
+                <input type="submit" value="Enrgistrer" class="btn btn-primary btn-primary-sm"/>
+                &nbsp; &nbsp;
+                <a href="{% url 'achats' %}" type="reset" class="btn btn-danger btn-danger-sm">Annuler</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

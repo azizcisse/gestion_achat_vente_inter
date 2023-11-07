@@ -1,6 +1,52 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>Ajouter Achat</h1>
-  
+
+<div class="container mt-4 w-50">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'achats' %}">Gestion des Achats</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ajouter Achat</li>
+        </ol>
+    </nav>
+
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'ajout-achat' %}" method="post">
+                {% include "partials/_messages.html" %}
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="montant">Montant</label>
+                    <input type="number" class="form-control form-control-sm" name="montant" value="{{values.montant}}">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea type="text" class="form-control form-control-sm" name="description" value="{{values.description}}" id="description" cols="30" rows="5">
+                    </textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select name="categorie" class="form-control form-control-sm">
+                        {% for categorie in categories %}
+                        <option name="categorie" value="{{ categorie.nomCategorie }}">
+                            {{ categorie.nomCategorie }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date d'Achat</label>
+                    <input type="date" class="form-control form-control-sm" name="date_achat">
+                </div>
+
+                <input type="submit" value="Enregistrer" class="btn btn-success btn-sm">
+                &nbsp; &nbsp;
+                <a href="{% url 'achats' %}" type="reset" class="btn btn-danger btn-sm">Annuler</a>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}

@@ -9,12 +9,15 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import django
 import os
 from pathlib import Path
 
 # Configure Django App for Heroku.
 import django_heroku
+
+#Message des alertes
+from django.contrib import messages
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "achats",
+    "graphene_django",
+    "preferencesutilisateur",
 ]
 
 MIDDLEWARE = [
@@ -143,3 +148,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
+
+#Message des alertes
+MESSAGE_TAGS={
+    messages.ERROR : "danger"
+}
+
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "admis.cana.sn@gmail.com"
+DEFAULT_HOST_USER = "admis.cana.sn@gmail.com"
+EMAIL_HOST_PASSWORD = "sudslddpvnqtnigg"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

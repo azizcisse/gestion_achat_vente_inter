@@ -12,3 +12,12 @@
         font-size: 3.5rem;
     }
 }
+
+.voirPasswordToggle {
+    cursor: pointer;
+    transition: all;
+}
+
+.voirPasswordToggle {
+    transform: scale(1.2);
+}

@@ -1,24 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-  
-<h1>Achats</h1>
 
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'achats' %}">Achats</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Liste des Achats
 
-<ul class="list-group">
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-    <li class="list-group-item">Acheté Bière</li>
-</ul>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'ajout-achat' %}" class="btn btn-primary btn-sm">Ajouter Achat</a>
+        </div>
+    </div>
+
+    <div class="container">
+        {% include "partials/_messages.html" %}
+        
+        {% if achats.count %}
+            
+        <table class="table table-stripped table-bordered table-hover">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Montant ({{ DEVISE }})</th>
+                    <th>Description</th>
+                    <th>Catégorie</th>
+                    <th>Date d'Achat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for achat in achats %}
+                
+            <tr>
+                <td>{{ achat.montant}}</td>
+                <td>{{ achat.description}}</td>
+                <td>{{ achat.categorie}}</td>
+                <td>{{ achat.date}}</td>
+                <td>
+                    <a href="{% url 'edit-achat' achat.id %}" class="btn btn-info btn-sm">Editer</a>
+                    &nbsp;&nbsp;
+                    <a href="{% url 'supprimer-achat' achat.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+</div>
+
 {% endblock content %}
